@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "777792017842",
+    "project_id": "datafirebase-dadd5",
+    "storage_bucket": "datafirebase-dadd5.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:777792017842:android:d3afcd10db27f848f780ab",
+        "android_client_info": {
+          "package_name": "com.example.datafirebase"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "777792017842-7j7dlp7er117q9nar860ebhae962ri1r.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.datafirebase",
+            "certificate_hash": "2061521f011d07c37e00a89f32a205162833db3b"
+          }
+        },
+        {
+          "client_id": "777792017842-ajdlp8rgtqvl476es5b8lh6tt3sua5pn.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBndZsQX-kJrrkpv23z7CJS-LrMYf7b-rE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "777792017842-ajdlp8rgtqvl476es5b8lh6tt3sua5pn.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
