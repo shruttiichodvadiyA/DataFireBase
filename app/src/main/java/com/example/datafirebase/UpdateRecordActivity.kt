@@ -10,8 +10,9 @@ import com.google.firebase.database.FirebaseDatabase
 class UpdateRecordActivity : AppCompatActivity() {
     lateinit var binding: ActivityUpdateRecordBinding
     lateinit var firebaseDatabase: FirebaseDatabase
-    var studentlist = ArrayList<StudentModelClass>()
-    lateinit var adapter: StudentAdapter
+
+    //    var studentlist = ArrayList<StudentModelClass>()
+//    lateinit var adapter: StudentAdapter
     var key: String = ""
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -21,11 +22,11 @@ class UpdateRecordActivity : AppCompatActivity() {
     }
 
     private fun initview() {
-        key=intent.getStringExtra("key").toString()
+        key = intent.getStringExtra("key").toString()
         binding.edtname.setText(intent.getStringExtra("name"))
         binding.edtadress.setText(intent.getStringExtra("adress"))
-        binding.edtemail.setText(intent.getStringExtra("email"))
         binding.edtMobileNumber.setText(intent.getStringExtra("mobileNumber"))
+        binding.edtemail.setText(intent.getStringExtra("email"))
 
         firebaseDatabase = FirebaseDatabase.getInstance()
         binding.btnupdate.setOnClickListener {
@@ -33,21 +34,24 @@ class UpdateRecordActivity : AppCompatActivity() {
             var data = StudentModelClass(
                 key,
                 binding.edtname.text.toString(),
-                binding.edtemail.text.toString(),
                 binding.edtadress.text.toString(),
-                binding.edtMobileNumber.text.toString()
+                binding.edtMobileNumber.text.toString(),
+                binding.edtemail.text.toString()
+
             )
             firebaseDatabase.reference.child("StudentTb").child(key).setValue(data)
                 .addOnCompleteListener {
 
-                    if (it.isSuccessful){
-                        Toast.makeText(this, "record updated successfully", Toast.LENGTH_SHORT).show()
+                    if (it.isSuccessful) {
+                        Toast.makeText(this, "record updated successfully", Toast.LENGTH_SHORT)
+                            .show()
                     }
                 }.addOnFailureListener {
-                    Toast.makeText(this,it.message, Toast.LENGTH_SHORT).show()
-            }
-            var i=Intent(this,DisplayDataActivity::class.java)
+                    Toast.makeText(this, it.message, Toast.LENGTH_SHORT).show()
+                }
+            var i = Intent(this, DisplayDataActivity::class.java)
             startActivity(i)
         }
     }
 }
+
