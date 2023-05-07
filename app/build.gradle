@@ -58,4 +58,7 @@ dependencies {
     implementation 'com.google.firebase:firebase-auth-ktx'
 //firebase realtime database
     implementation 'com.google.firebase:firebase-database-ktx'
+
+//upload image storage
+    implementation 'com.google.firebase:firebase-storage:19.1.0'
 }

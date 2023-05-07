@@ -1,12 +1,17 @@
 package com.example.datafirebase
 
+import android.app.Dialog
 import android.content.Intent
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.datafirebase.databinding.ActivityDisplayDataBinding
+import com.example.datafirebase.databinding.DeleteDialogBinding
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
@@ -51,7 +56,7 @@ class DisplayDataActivity : AppCompatActivity() {
          adapter = StudentAdapter(studentlist, {
             var i = Intent(this, UpdateRecordActivity::class.java)
             id=it.key
-            i.putExtra("key", it.key)
+            i.putExtra("key", id)
             i.putExtra("name", it.name)
             i.putExtra("adress", it.adress)
             i.putExtra("mobileNumber", it.mobileno)
@@ -70,13 +75,33 @@ class DisplayDataActivity : AppCompatActivity() {
     }
 
     private fun deleteDataFromDataBase() {
-        firebaseDatabase.reference.child("StudentTb").child(id).removeValue().addOnCompleteListener {
-            if (it.isSuccessful){
-                Toast.makeText(this, "record delete ", Toast.LENGTH_SHORT).show()
+
+        val dialog = Dialog(this)
+        val dialogBinding: DeleteDialogBinding = DeleteDialogBinding.inflate(layoutInflater)
+        dialog.setContentView(dialogBinding.root)
+        dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        dialog.window?.setLayout(
+            LinearLayout.LayoutParams.MATCH_PARENT,
+            LinearLayout.LayoutParams.WRAP_CONTENT
+        )
+        dialogBinding.btndelete.setOnClickListener {
+            firebaseDatabase.reference.child("StudentTb").child(id).removeValue().addOnCompleteListener {
+                if (it.isSuccessful){
+                    Toast.makeText(this, "record delete ", Toast.LENGTH_SHORT).show()
+                }
+            }.addOnFailureListener {
+                Toast.makeText(this, it.message, Toast.LENGTH_SHORT).show()
             }
-        }.addOnFailureListener {
-            Toast.makeText(this, it.message, Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "delete", Toast.LENGTH_SHORT).show()
+            dialog.dismiss()
         }
+
+        dialogBinding.btncancel.setOnClickListener {
+            Toast.makeText(this, "Cancel", Toast.LENGTH_SHORT).show()
+            dialog.dismiss()
+        }
+        dialog.show()
+
     }
 
 

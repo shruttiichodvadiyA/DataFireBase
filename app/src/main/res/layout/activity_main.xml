@@ -8,10 +8,37 @@
     android:orientation="vertical"
     tools:context=".MainActivity">
 
+    <ImageView
+        android:layout_marginTop="@dimen/_10sdp"
+        android:id="@+id/imgview"
+        android:layout_width="@dimen/_150sdp"
+        android:layout_height="@dimen/_150sdp" />
+
+    <LinearLayout
+        android:layout_marginTop="@dimen/_10sdp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:layout_marginHorizontal="@dimen/_10sdp"
+            android:layout_weight="1"
+            android:text="Selectimage"
+            android:id="@+id/btnselectimg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <Button
+            android:layout_marginHorizontal="@dimen/_10sdp"
+            android:layout_weight="1"
+            android:text="UploadImage"
+            android:id="@+id/btnuploadimg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
+
         <com.google.android.material.textfield.TextInputLayout
             style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.Dense"
             android:layout_width="match_parent"
@@ -21,13 +48,14 @@
             android:background="@color/white">
 
             <EditText
-                android:imeOptions="actionNext"
-                android:inputType="textPersonName"
                 android:id="@+id/edtname"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="enter your name" />
+                android:hint="enter your name"
+                android:imeOptions="actionNext"
+                android:inputType="textPersonName" />
         </com.google.android.material.textfield.TextInputLayout>
+
         <com.google.android.material.textfield.TextInputLayout
             style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.Dense"
             android:layout_width="match_parent"
@@ -44,22 +72,22 @@
                 android:imeOptions="actionNext"
                 android:inputType="textImeMultiLine" />
         </com.google.android.material.textfield.TextInputLayout>
+
         <com.google.android.material.textfield.TextInputLayout
             style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.Dense"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="@dimen/_30sdp"
-            android:hint="enter your mobile no."
             android:layout_marginVertical="@dimen/_10sdp"
-            android:background="@color/white">
+            android:background="@color/white"
+            android:hint="enter your mobile no.">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:imeOptions="actionNext"
-                android:inputType="numberDecimal"
                 android:id="@+id/edtMobileNumber"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                />
+                android:imeOptions="actionNext"
+                android:inputType="numberDecimal" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -71,12 +99,12 @@
             android:background="@color/white">
 
             <EditText
-                android:imeOptions="actionNext"
-                android:inputType="textEmailAddress"
                 android:id="@+id/edtemail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="enter your email" />
+                android:hint="enter your email"
+                android:imeOptions="actionNext"
+                android:inputType="textEmailAddress" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -89,12 +117,12 @@
             app:endIconMode="password_toggle">
 
             <EditText
-                android:imeOptions="actionDone"
-                android:inputType="numberPassword"
                 android:id="@+id/edtpassword"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="enter your password" />
+                android:hint="enter your password"
+                android:imeOptions="actionDone"
+                android:inputType="numberPassword" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <Button
@@ -107,6 +135,7 @@
             android:paddingHorizontal="@dimen/_10sdp"
             android:text="Register"
             android:textColor="@color/white" />
+
         <Button
             android:id="@+id/btnDisplay"
             android:layout_width="wrap_content"
