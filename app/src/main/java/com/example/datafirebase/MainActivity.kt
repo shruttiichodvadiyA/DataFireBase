@@ -2,9 +2,11 @@ package com.example.datafirebase
 
 import android.app.ProgressDialog
 import android.content.Intent
+import android.graphics.Bitmap
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
+import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.datafirebase.databinding.ActivityMainBinding
@@ -22,6 +24,8 @@ class MainActivity : AppCompatActivity() {
     lateinit var storageReference: StorageReference
     var PICK_IMAGE_REQUEST = 100
     lateinit var filePath: Uri
+    lateinit var bitmap: Bitmap
+   private lateinit var images:String
     var studentlist = ArrayList<StudentModelClass>()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -53,7 +57,7 @@ class MainActivity : AppCompatActivity() {
             }
             else{
                 val key = firebaseDatabase.reference.child("StudentTb").push().key ?: ""
-                val data = StudentModelClass(key, name, adress, mobileno, email)
+                val data = StudentModelClass(key, name, adress, mobileno, email,images)
                 firebaseDatabase.reference.child("StudentTb").child(key).setValue(data)
                     .addOnCompleteListener {
                         if (it.isSuccessful) {
@@ -97,17 +101,23 @@ class MainActivity : AppCompatActivity() {
 
             // Defining the child of storageReference
             val ref: StorageReference = storageReference.child(
-                "images/"
-                        + UUID.randomUUID().toString()
-            )
+                "images/" + UUID.randomUUID().toString())
 
             // adding listeners on upload
             // or failure of image
             ref.putFile(filePath)
+
+                .addOnCompleteListener{
+                    ref.downloadUrl.addOnSuccessListener {
+                        images=it.toString()
+                        Log.e("TAG", "uploadImage: "+it )
+                    }
+                }
                 .addOnSuccessListener { // Image uploaded successfully
                     // Dismiss dialog
                     progressDialog.dismiss()
                     Toast.makeText(this@MainActivity, "Image Uploaded!!", Toast.LENGTH_SHORT).show()
+
                 }
                 .addOnFailureListener { e -> // Error, Image not uploaded
                     progressDialog.dismiss()

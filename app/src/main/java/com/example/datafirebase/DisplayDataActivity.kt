@@ -43,7 +43,9 @@ class DisplayDataActivity : AppCompatActivity() {
                     data?.let { it1 -> studentlist.add(it1) }
 
                 }
+//                setAdapter()
                 adapter.updateData(studentlist)
+
             }
 
             override fun onCancelled(error: DatabaseError) {
@@ -53,9 +55,9 @@ class DisplayDataActivity : AppCompatActivity() {
     }
 
     private fun setAdapter() {
-         adapter = StudentAdapter(studentlist, {
+        adapter = StudentAdapter( this, {
             var i = Intent(this, UpdateRecordActivity::class.java)
-            id=it.key
+            id = it.key
             i.putExtra("key", id)
             i.putExtra("name", it.name)
             i.putExtra("adress", it.adress)
@@ -85,11 +87,12 @@ class DisplayDataActivity : AppCompatActivity() {
             LinearLayout.LayoutParams.WRAP_CONTENT
         )
         dialogBinding.btndelete.setOnClickListener {
-            firebaseDatabase.reference.child("StudentTb").child(id).removeValue().addOnCompleteListener {
-                if (it.isSuccessful){
-                    Toast.makeText(this, "record delete ", Toast.LENGTH_SHORT).show()
-                }
-            }.addOnFailureListener {
+            firebaseDatabase.reference.child("StudentTb").child(id).removeValue()
+                .addOnCompleteListener {
+                    if (it.isSuccessful) {
+                        Toast.makeText(this, "record delete ", Toast.LENGTH_SHORT).show()
+                    }
+                }.addOnFailureListener {
                 Toast.makeText(this, it.message, Toast.LENGTH_SHORT).show()
             }
             Toast.makeText(this, "delete", Toast.LENGTH_SHORT).show()

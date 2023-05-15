@@ -10,6 +10,7 @@ import com.google.firebase.database.FirebaseDatabase
 class UpdateRecordActivity : AppCompatActivity() {
     lateinit var binding: ActivityUpdateRecordBinding
     lateinit var firebaseDatabase: FirebaseDatabase
+    lateinit var images: String
 
     //    var studentlist = ArrayList<StudentModelClass>()
 //    lateinit var adapter: StudentAdapter
@@ -31,12 +32,11 @@ class UpdateRecordActivity : AppCompatActivity() {
         firebaseDatabase = FirebaseDatabase.getInstance()
         binding.btnupdate.setOnClickListener {
 
-            var data = StudentModelClass(
-                key,
+            var data = StudentModelClass(key,
                 binding.edtname.text.toString(),
                 binding.edtadress.text.toString(),
                 binding.edtMobileNumber.text.toString(),
-                binding.edtemail.text.toString()
+                binding.edtemail.text.toString(),images
 
             )
             firebaseDatabase.reference.child("StudentTb").child(key).setValue(data)
