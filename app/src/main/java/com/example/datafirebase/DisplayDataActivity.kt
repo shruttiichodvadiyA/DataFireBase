@@ -48,6 +48,7 @@ class DisplayDataActivity : AppCompatActivity() {
 
             }
 
+
             override fun onCancelled(error: DatabaseError) {
 
             }

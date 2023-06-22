@@ -24,7 +24,6 @@ class MainActivity : AppCompatActivity() {
     lateinit var storageReference: StorageReference
     var PICK_IMAGE_REQUEST = 100
     lateinit var filePath: Uri
-    lateinit var bitmap: Bitmap
    private lateinit var images:String
     var studentlist = ArrayList<StudentModelClass>()
     override fun onCreate(savedInstanceState: Bundle?) {
